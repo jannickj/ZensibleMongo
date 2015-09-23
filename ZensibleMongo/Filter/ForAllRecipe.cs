@@ -9,7 +9,7 @@
     /// For all selector recipe
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public class ForAllRecipe<TDocument> : IFilterDefinition<TDocument>
+    internal class ForAllRecipe<TDocument> : IFilterMultiRecipe<TDocument>
     {
         /// <summary>
         /// Mongo collection

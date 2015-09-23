@@ -7,7 +7,7 @@
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
     /// <typeparam name="TField"></typeparam>
-    public class SetSingleRecipe<TDocument, TField> : SetRecipe<TDocument, TField>, IUpdateSingleDefinition<TDocument>
+    internal class SetUpdateSingleRecipe<TDocument, TField> : SetUpdateMultiRecipe<TDocument, TField>, IUpdateSingleRecipe<TDocument>
     {
     }
 }

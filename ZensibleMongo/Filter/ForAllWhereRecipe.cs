@@ -10,7 +10,7 @@
     /// For all where recipe
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public class ForAllWhereRecipe<TDocument> : IFilterDefinition<TDocument>
+    internal class ForAllWhereRecipe<TDocument> : IFilterMultiRecipe<TDocument>
     {
         /// <summary>
         /// Predicate to satisfy for selection

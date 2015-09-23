@@ -5,20 +5,12 @@
     using MongoDB.Driver;
 
     /// <summary>
-    /// Create a single document recipe
+    /// Create a single document createMultiRecipe
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public class CreateSingleRecipe<TDocument> : ICollectionContainer<TDocument>
+    internal class CreateSingleRecipe<TDocument> : ICreateSingleRecipe<TDocument>
     {
-        /// <summary>
-        /// Document to be created
-        /// </summary>
-        public TDocument Document { get; set; }
-
-        /// <summary>
-        /// Mongo Collection
-        /// </summary>
         public IMongoCollection<TDocument> Collection { get; set; }
-        
+        public TDocument Document { get; set; }
     }
 }

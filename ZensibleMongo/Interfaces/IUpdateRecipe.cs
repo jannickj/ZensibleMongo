@@ -7,7 +7,7 @@
     /// Inferface for recipes that updates the collection
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public interface IUpdateDefinition<TDocument> : ICollectionContainer<TDocument>, IFilterDefinitionContainer<TDocument>
+    public interface IUpdateRecipe<TDocument> : IMongoCollectionContainer<TDocument>, IFilterRecipeContainer<TDocument>
     {
         /// <summary>
         /// All update recipes

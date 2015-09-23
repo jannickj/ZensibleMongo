@@ -42,14 +42,14 @@
             return Builders<T>.Update.Combine(updates.ToArray());
         }
 
-        internal static FilterDefinition<T> ExtractFilter<T>(IFilterDefinitionContainer<T> recipe)
+        internal static FilterDefinition<T> ExtractFilter<T>(IFilterRecipeContainer<T> recipe)
         {
-            if (recipe.FilterDefinition == null)
+            if (recipe.FilterRecipe == null)
             {
                 throw new Exception("No Filter found");
             }
 
-            return Combine(recipe.FilterDefinition.Filters());
+            return Combine(recipe.FilterRecipe.Filters());
         }
     }
 }

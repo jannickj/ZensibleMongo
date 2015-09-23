@@ -4,11 +4,11 @@
     /// Interface for recipes that contain filters
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IFilterDefinitionContainer<T>
+    public interface IFilterRecipeContainer<T>
     {
         /// <summary>
         /// Filter
         /// </summary>
-        IFilterDefinition<T> FilterDefinition { get; }
+        IFilterRecipe<T> FilterRecipe { get; }
     }
 }

@@ -7,7 +7,7 @@
     /// Interface for selector recipes
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public interface IFilterDefinition<TDocument> : ICollectionContainer<TDocument>
+    public interface IFilterRecipe<TDocument> : IMongoCollectionContainer<TDocument>
     {
         /// <summary>
         /// Immutable list of filters to select with

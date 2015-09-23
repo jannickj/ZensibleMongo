@@ -15,7 +15,7 @@
     public static class PushExtension
     {
         /// <summary>
-        /// Updates to the mongo db based on the recipe
+        /// Updates to the mongo db based on the createMultiRecipe
         /// </summary>
         /// <typeparam name="TDocument"></typeparam>
         /// <param name="recipe"></param>
@@ -23,7 +23,7 @@
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
         public static async Task<UpdateResult> Push<TDocument>(
-            this IUpdateDefinition<TDocument> recipe,
+            this IUpdateRecipe<TDocument> recipe,
             UpdateOptions options = null,
             CancellationToken token = default(CancellationToken))
         {
@@ -42,7 +42,7 @@
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
         public static async Task<TDocument> Push<TDocument>(
-            this IUpdateSingleDefinition<TDocument> recipe,
+            this IUpdateSingleRecipe<TDocument> recipe,
             UpdateOptions options = null,
             CancellationToken token = default(CancellationToken))
         {
@@ -59,7 +59,7 @@
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
         public static async Task<TDocument> Push<TDocument>(
-            this CreateSingleRecipe<TDocument> recipe,
+            this ICreateSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
             var value = recipe.Document.CloneJson();
@@ -72,22 +72,22 @@
         /// (Input is cloned and is not affected)
         /// </summary>
         /// <typeparam name="TDocument"></typeparam>
-        /// <param name="recipe"></param>
+        /// <param name="createMultiRecipe"></param>
         /// <param name="options"></param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
         public static async Task<IEnumerable<TDocument>> Push<TDocument>(
-            this CreateRecipe<TDocument> recipe,
+            this ICreateMultiRecipe<TDocument> createMultiRecipe,
             InsertManyOptions options = null,
             CancellationToken token = default(CancellationToken))
         {
-            var inserts = recipe.AllDocuments().Select(v => v.CloneJson()).ToArray();
-            await recipe.Collection.InsertManyAsync(inserts, options, token);
+            var inserts = createMultiRecipe.AllDocuments().Select(v => v.CloneJson()).ToArray();
+            await createMultiRecipe.Collection.InsertManyAsync(inserts, options, token);
             return inserts;
         }
 
         /// <summary>
-        /// Deletes multiple documents based on the recipe
+        /// Deletes multiple documents based on the createMultiRecipe
         /// (Input is cloned and is not affected)
         /// </summary>
         /// <typeparam name="TDocument"></typeparam>
@@ -95,7 +95,7 @@
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
         public static async Task<DeleteResult> Push<TDocument>(
-            this DeleteRecipe<TDocument> recipe,
+            this IDeleteMultiRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
             var filter = Factory.ExtractFilter(recipe);
@@ -109,7 +109,7 @@
         /// <param name="recipe"></param>
         /// <param name="token">Cancellation Token</param>
         public static async Task<TDocument> Push<TDocument>(
-            this DeleteSingleRecipe<TDocument> recipe,
+            this IDeleteSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
             var filter = Factory.ExtractFilter(recipe);

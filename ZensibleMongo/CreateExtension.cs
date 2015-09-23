@@ -2,6 +2,7 @@
 {
     using System.Collections.Immutable;
     using Create;
+    using Interfaces;
     using MongoDB.Driver;
 
     /// <summary>
@@ -16,9 +17,9 @@
         /// <param name="collection"></param>
         /// <param name="documents">Documents to be created.</param>
         /// <returns></returns>
-        public static CreateRecipe<TDocument> Create<TDocument>(this IMongoCollection<TDocument> collection, params TDocument[] documents)
+        public static ICreateMultiRecipe<TDocument> Create<TDocument>(this IMongoCollection<TDocument> collection, params TDocument[] documents)
         {
-            return new CreateRecipe<TDocument> { Collection = collection, Documents = ImmutableList.Create(documents) };
+            return new CreateMultiRecipe<TDocument> { Collection = collection, Documents = ImmutableList.Create(documents) };
         }
 
 
@@ -29,7 +30,7 @@
         /// <param name="collection"></param>
         /// <param name="document">Document to be created.</param>
         /// <returns></returns>
-        public static CreateSingleRecipe<TDocument> Create<TDocument>(this IMongoCollection<TDocument> collection, TDocument document)
+        public static ICreateSingleRecipe<TDocument> Create<TDocument>(this IMongoCollection<TDocument> collection, TDocument document)
         {
             return new CreateSingleRecipe<TDocument> { Collection = collection, Document = document };
         }

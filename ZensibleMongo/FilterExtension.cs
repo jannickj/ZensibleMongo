@@ -3,6 +3,7 @@
     using System;
     using System.Linq.Expressions;
     using Filter;
+    using Interfaces;
     using MongoDB.Bson;
     using MongoDB.Driver;
 
@@ -18,7 +19,7 @@
         /// <param name="collection"></param>
         /// <param name="predicate">a function to test documents for a condition</param>
         /// <returns></returns>
-        public static ForAllWhereRecipe<TDocument> ForAllWhere<TDocument>(
+        public static IFilterMultiRecipe<TDocument> ForAllWhere<TDocument>(
             this IMongoCollection<TDocument> collection,
             Expression<Func<TDocument, bool>> predicate)
         {
@@ -31,7 +32,7 @@
         /// <typeparam name="TDocument"></typeparam>
         /// <param name="collection"></param>
         /// <returns></returns>
-        public static ForAllRecipe<TDocument> ForAll<TDocument>(this IMongoCollection<TDocument> collection)
+        public static IFilterMultiRecipe<TDocument> ForAll<TDocument>(this IMongoCollection<TDocument> collection)
         {
             return new ForAllRecipe<TDocument> { Collection = collection };
         }
@@ -43,7 +44,7 @@
         /// <param name="collection"></param>
         /// <param name="id">Mongo id of the document</param>
         /// <returns></returns>
-        public static ForIdRecipe<TDocument> ForId<TDocument>(this IMongoCollection<TDocument> collection, ObjectId id)
+        public static IFilterSingleRecipe<TDocument> ForId<TDocument>(this IMongoCollection<TDocument> collection, ObjectId id)
         {
             return new ForIdRecipe<TDocument> { Collection = collection, Id = id };
         }
@@ -55,11 +56,11 @@
         /// <param name="collection"></param>
         /// <param name="predicate">a function to test documents for a condition</param>
         /// <returns></returns>
-        public static ForSingleWhere<TDocument> ForSingleWhere<TDocument>(
+        public static IFilterSingleRecipe<TDocument> ForSingleWhere<TDocument>(
             this IMongoCollection<TDocument> collection,
             Expression<Func<TDocument, bool>> predicate)
         {
-            return new ForSingleWhere<TDocument> { Collection = collection, Predicate = predicate };
+            return new ForFilterSingleWhere<TDocument> { Collection = collection, Predicate = predicate };
         }
     }
 }

@@ -11,7 +11,7 @@
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
     /// <typeparam name="TField"></typeparam>
-    public class SetRecipe<TDocument, TField> : IUpdateDefinition<TDocument>, ICollectionContainer<TDocument>
+    internal class SetUpdateMultiRecipe<TDocument, TField> : IUpdateMultiRecipe<TDocument>
     {
         /// <summary>
         /// Field selector
@@ -26,12 +26,12 @@
         /// <summary>
         /// Next update recipe
         /// </summary>
-        public IUpdateDefinition<TDocument> NextDefinition { get; set; }
+        public IUpdateRecipe<TDocument> NextRecipe { get; set; }
 
         /// <summary>
         /// Filter to use for update
         /// </summary>
-        public IFilterDefinition<TDocument> FilterDefinition { get; set; }
+        public IFilterRecipe<TDocument> FilterRecipe { get; set; }
 
         /// <summary>
         /// Mongo collection
@@ -45,7 +45,7 @@
         public ImmutableList<UpdateDefinition<TDocument>> UpdateDefinitions()
         {
             var update = Builders<TDocument>.Update.Set(Field, Value);
-            return NextDefinition?.UpdateDefinitions().Add(update) ?? ImmutableList.Create(update);
+            return NextRecipe?.UpdateDefinitions().Add(update) ?? ImmutableList.Create(update);
         }
     }
 }

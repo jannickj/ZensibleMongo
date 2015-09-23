@@ -9,7 +9,7 @@
     /// For Id Recipe
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ForIdRecipe<T> : IFilterDefinition<T>
+    internal class ForIdRecipe<T> : IFilterSingleRecipe<T>
     {
         /// <summary>
         /// Mongo document id

@@ -6,7 +6,7 @@
     /// Interface for mongo collection holders
     /// </summary>
     /// <typeparam name="TDocuments"></typeparam>
-    public interface ICollectionContainer<TDocuments>
+    public interface IMongoCollectionContainer<TDocuments>
     {
         /// <summary>
         /// Mongo collection

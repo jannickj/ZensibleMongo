@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/trustpilot/ZensibleMongo/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/trustpilot/ZensibleMongo</projectUrl>
+    <iconUrl>http://i.imgur.com/delHwBl.jpg?1</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>No longer exposes classes and interfaces have been renamed</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Mongo MongoDb Extension sensible simplify Pure</tags>
+  </metadata>
+</package>

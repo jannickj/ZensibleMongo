@@ -10,7 +10,7 @@
     /// For a single document where recipe
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public class ForSingleWhere<TDocument> : IFilterDefinition<TDocument>
+    internal class ForFilterSingleWhere<TDocument> : IFilterSingleRecipe<TDocument>
     {
         /// <summary>
         /// Predicate to satisfy for selection

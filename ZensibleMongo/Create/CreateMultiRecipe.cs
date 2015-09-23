@@ -8,7 +8,7 @@
     /// Create recipe
     /// </summary>
     /// <typeparam name="TDocument"></typeparam>
-    public class CreateRecipe<TDocument> : ICollectionContainer<TDocument>, ICreateDefinition<TDocument>
+    internal class CreateMultiRecipe<TDocument> : ICreateMultiRecipe<TDocument>
     {
         /// <summary>
         /// Documents

@@ -7,7 +7,7 @@
     /// Delete recipe
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class DeleteRecipe<T> : ICollectionContainer<T>, IFilterDefinitionContainer<T>
+    internal class Recipe<T> : IDeleteMultiRecipe<T>
     {
         /// <summary>
         /// Mongo collection
@@ -17,6 +17,6 @@
         /// <summary>
         /// Selector for delete
         /// </summary>
-        public IFilterDefinition<T> FilterDefinition { get; set; }
+        public IFilterRecipe<T> FilterRecipe { get; set; }
     }
 }
