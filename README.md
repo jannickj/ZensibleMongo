@@ -14,7 +14,7 @@ var document = await result.SingleOrDefaultAsync()
 
 Alternative with zensible mongo
 ```
- var document = await collection.ForId(id).Pull();
+ var document = await collection.ForId(id).PullAsync();
 ```
 
 Or lets assume you want to insert a document into mongo and get the id that it got inserted with
@@ -25,7 +25,7 @@ Hmm thats weired there doesn't seem to be a way to get the id... ofc it changes 
 
 Alternative with zensible mongo
 ```
- var documentWithID = await collection.Create(document).Push()
+ var documentWithID = await collection.Create(document).PushAsync()
  documentWithID.ShouldNotBe(document) //pass
 ```
 ahh nice a cloned safe version that is different
@@ -39,19 +39,19 @@ For a look up simply chose a selector such as ForId, ForSingleWhere etc.
 
 To Fetch a single document based on a condition.
 ```
- var document = await collection.ForSingleWhere(d => d.IsDue).Pull();
+ var document = await collection.ForSingleWhere(d => d.IsDue).PullAsync();
 ```
 ForSingleWhere should be be read: For a Single document Where (predicate) is true..
 
 To fetch all documents based on a condition.
 ```
- var document = await collection.ForAllWhere(d => d.IsDue).Pull();
+ var document = await collection.ForAllWhere(d => d.IsDue).PullAsync();
 ```
 ForAllWhere should be be read: For All document Where (predicate) is true...
 
 To fetch all documents
 ```
- var document = await collection.ForAllWhere(d => d.IsDue).Pull();
+ var document = await collection.ForAllWhere(d => d.IsDue).PullAsync();
 ```
 ForAllWhere should be be read: For All document Where (predicate) is true...
 
@@ -60,27 +60,27 @@ ForAllWhere should be be read: For All document Where (predicate) is true...
 Like with the query we begin by ForId/ForSingleWhere/For..
 ```
  var document = await collection.ForId(id)
-                          .Set(d => d.Field, value)
-                          .Push();
+                                .Set(d => d.Field, value)
+                                .PushAsync();
 ```
 BONUS: if the selection only refers to one document that document will be returned.
 
 To change multiple fields simply string them together
 ```
  var document = await collection.ForId(id)
-                          .Set(d => d.Field1, value1)
-                          .Set(d => d.Field2, value2)
-                          .Set(d => d.Field3, value3)
-                          ..
-                          ..
-                          .Push();
+                                .Set(d => d.Field1, value1)
+                                .Set(d => d.Field2, value2)
+                                .Set(d => d.Field3, value3)
+                                ..
+                                ..
+                                .PushAsync();
 ```
 
 
 ### Delete
 Like with query simply attach delete and the result will be a delete
 ```
- var document = await collection.ForId(id).Delete().Push();
+ var document = await collection.ForId(id).Delete().PushAsync();
 ```
 BONUS: if the selection only refers to one document that document will be returned.
 
@@ -88,12 +88,12 @@ BONUS: if the selection only refers to one document that document will be return
 ### Create
 To insert a document in the mongo collection simply use Create
 ```
- var newDocument = await collection.Create(document).Push();  // newDocument != document
+ var newDocument = await collection.Create(document).PushAsync();  // newDocument != document
 ```
 
 For multiple documents 
 ```
- var manyNewDocs = await collection.Create(doc1, doc2, ...).Push();
+ var manyNewDocs = await collection.Create(doc1, doc2, ...).PushAsync();
 ```
 
 ## What is up with the Pull/Push?
@@ -106,8 +106,8 @@ var allReadMailsQuery = collection.ForAllWhere(m => m.IsRead)
 
 Now when I need it I can either fetch it, delete it etc etc..
 ```
-var allReadMails = await allReadMailsQuery.Pull(); 
-await allReadMailsQuery.Delete();
+var allReadMails = await allReadMailsQuery.PullAsync(); 
+await allReadMailsQuery.Delete().PushAsync();
 ...
 ...
 ```
