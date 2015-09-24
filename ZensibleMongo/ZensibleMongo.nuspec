@@ -11,7 +11,7 @@
     <iconUrl>http://i.imgur.com/delHwBl.jpg?1</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>No longer exposes classes and interfaces have been renamed</releaseNotes>
+    <releaseNotes>Pull and Push now follows async convention</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Mongo MongoDb Extension sensible simplify Pure</tags>
   </metadata>

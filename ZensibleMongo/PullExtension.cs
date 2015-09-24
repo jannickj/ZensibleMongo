@@ -18,7 +18,7 @@
         /// <param name="recipe"></param>
         /// <param name="token">cancellation token</param>
         /// <returns></returns>
-        public static async Task<IAsyncCursor<TDocument>> Pull<TDocument>(
+        public static async Task<IAsyncCursor<TDocument>> PullAsync<TDocument>(
             this IFilterRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
@@ -34,13 +34,15 @@
         /// <param name="recipe"></param>
         /// <param name="token">cancellation token</param>
         /// <returns></returns>
-        public static async Task<TDocument> Pull<TDocument>(
+        public static async Task<TDocument> PullAsync<TDocument>(
             this IFilterSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
             var filter = Factory.Combine(recipe.Filters());
             return await recipe.Collection.FindAsync(filter, null, token).FirstOrDefaultAsync();
         }
+
+    
 
     }
 }

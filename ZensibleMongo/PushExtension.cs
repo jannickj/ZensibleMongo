@@ -22,7 +22,7 @@
         /// <param name="options">Update Options</param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
-        public static async Task<UpdateResult> Push<TDocument>(
+        public static async Task<UpdateResult> PushAsync<TDocument>(
             this IUpdateRecipe<TDocument> recipe,
             UpdateOptions options = null,
             CancellationToken token = default(CancellationToken))
@@ -41,7 +41,7 @@
         /// <param name="options">Update Options</param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
-        public static async Task<TDocument> Push<TDocument>(
+        public static async Task<TDocument> PushAsync<TDocument>(
             this IUpdateSingleRecipe<TDocument> recipe,
             UpdateOptions options = null,
             CancellationToken token = default(CancellationToken))
@@ -58,7 +58,7 @@
         /// <param name="recipe"></param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
-        public static async Task<TDocument> Push<TDocument>(
+        public static async Task<TDocument> PushAsync<TDocument>(
             this ICreateSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
@@ -76,7 +76,7 @@
         /// <param name="options"></param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
-        public static async Task<IEnumerable<TDocument>> Push<TDocument>(
+        public static async Task<IEnumerable<TDocument>> PushAsync<TDocument>(
             this ICreateMultiRecipe<TDocument> createMultiRecipe,
             InsertManyOptions options = null,
             CancellationToken token = default(CancellationToken))
@@ -94,7 +94,7 @@
         /// <param name="recipe"></param>
         /// <param name="token">Cancellation Token</param>
         /// <returns></returns>
-        public static async Task<DeleteResult> Push<TDocument>(
+        public static async Task<DeleteResult> PushAsync<TDocument>(
             this IDeleteMultiRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
@@ -108,7 +108,7 @@
         /// <typeparam name="TDocument"></typeparam>
         /// <param name="recipe"></param>
         /// <param name="token">Cancellation Token</param>
-        public static async Task<TDocument> Push<TDocument>(
+        public static async Task<TDocument> PushAsync<TDocument>(
             this IDeleteSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {

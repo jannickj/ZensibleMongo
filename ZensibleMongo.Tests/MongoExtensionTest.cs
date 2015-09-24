@@ -27,7 +27,7 @@
 
             var data = new DataExample() { A = 0, B = 1 };
 
-            var result = await col.Create(data).Push();
+            var result = await col.Create(data).PushAsync();
 
 #pragma warning disable 4014
             col.Received().InsertOneAsync(data, default(CancellationToken));
@@ -47,7 +47,7 @@
             var manyData = new[] {data, data};
 
             var result = await col.Create(manyData)
-                                  .Push();
+                                  .PushAsync();
             
 #pragma warning disable 4014
             col.Received().InsertManyAsync(Arg.Any<IEnumerable<DataExample>>(), null, default(CancellationToken));
@@ -66,7 +66,7 @@
 
             var result = await col.ForId(id)
                 .Set(SomeField, data)
-                .Push();
+                .PushAsync();
 
 #pragma warning disable 4014
             col.Received().FindOneAndUpdateAsync(
@@ -87,7 +87,7 @@
 
             var result = await col.ForSingleWhere(SomeWhereTest)
                 .Set(SomeField, data)
-                .Push();
+                .PushAsync();
 
 #pragma warning disable 4014
             col.Received().FindOneAndUpdateAsync(
@@ -107,7 +107,7 @@
 
             await col.ForAll()
                      .Set(SomeField, data)
-                     .Push();
+                     .PushAsync();
 
 
 #pragma warning disable 4014
@@ -126,7 +126,7 @@
 
             await col.ForAllWhere(SomeWhereTest)
                      .Set(SomeField, data)
-                     .Push();
+                     .PushAsync();
 
 #pragma warning disable 4014
             col.Received().UpdateManyAsync(
@@ -143,7 +143,7 @@
 
             await col.ForAllWhere(SomeWhereTest)
                      .Delete()
-                     .Push();
+                     .PushAsync();
 
 #pragma warning disable 4014
             col.Received().DeleteManyAsync(
@@ -160,7 +160,7 @@
 
             var result = await col.ForAll()
                 .Delete()
-                .Push();
+                .PushAsync();
 
 #pragma warning disable 4014
             col.Received().DeleteManyAsync(
@@ -180,7 +180,7 @@
 
             var result = await col.ForId(id)
                 .Delete()
-                .Push();
+                .PushAsync();
 
 #pragma warning disable 4014
             col.Received().FindOneAndDeleteAsync(
@@ -200,7 +200,7 @@
 
             var result = await col.ForSingleWhere(SomeWhereTest)
                 .Delete()
-                .Push();
+                .PushAsync();
 
 #pragma warning disable 4014
             col.Received().FindOneAndDeleteAsync(
@@ -220,7 +220,7 @@
             var col = Substitute.For<IMongoCollection<DataExample>>();
             var id = ValidObjectId();
 
-            var result = await col.ForId(id).Pull();
+            var result = await col.ForId(id).PullAsync();
 
 #pragma warning disable 4014
             col.Received().FindAsync(
@@ -240,7 +240,7 @@
             var col = Substitute.For<IMongoCollection<DataExample>>();
 
             var result = await col.ForAllWhere(SomeWhereTest)
-                        .Pull().ToListAsync();
+                        .PullAsync().ToListAsync();
 
 #pragma warning disable 4014
             col.Received().FindAsync(
@@ -258,7 +258,7 @@
             var col = Substitute.For<IMongoCollection<DataExample>>();
 
             var result = await col.ForAll()
-                .Pull().ToListAsync();
+                .PullAsync().ToListAsync();
 
 #pragma warning disable 4014
             col.Received().FindAsync(
@@ -277,7 +277,7 @@
             var col = Substitute.For<IMongoCollection<DataExample>>();
 
             var result = await col.ForSingleWhere(SomeWhereTest)
-                .Pull();
+                .PullAsync();
 
 #pragma warning disable 4014
             col.Received().FindAsync(
