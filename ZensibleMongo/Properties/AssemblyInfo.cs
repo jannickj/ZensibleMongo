@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ZensibleMongo")]
+[assembly: AssemblyTitle("Zensible Mongo")]
 [assembly: AssemblyDescription("An extension library for simplifying mongo c# driver, more details can be found at https://github.com/trustpilot/ZensibleMongo")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jannick Johnsen")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.1")]
-[assembly: AssemblyFileVersion("1.1.0.1")]
+[assembly: AssemblyVersion("1.1.0.2")]
+[assembly: AssemblyFileVersion("1.1.0.2")]
