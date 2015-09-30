@@ -5,26 +5,26 @@
     using System.Linq;
     using Interfaces;
     using MongoDB.Driver;
-    using Newtonsoft.Json;
 
     internal static class Factory
     {
-        /// <summary>
-        ///     Perform a deep Copy of the object, using Json as a serialisation method.
-        /// </summary>
-        /// <typeparam name="T">The type of object being copied.</typeparam>
-        /// <param name="source">The object instance to copy.</param>
-        /// <returns>The copied object.</returns>
-        // See http://stackoverflow.com/questions/78536/deep-cloning-objects
-        internal static T CloneJson<T>(this T source)
-        {
-            // Don't serialize a null object, simply return the default for that object
-            if (ReferenceEquals(source, null))
-            {
-                return default(T);
-            }
 
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
+        /// <summary>
+        /// Clones a object via shallow copy
+        /// </summary>
+        /// <typeparam name="T">Object Type to Clone</typeparam>
+        /// <param name="obj">Object to Clone</param>
+        /// <returns>New Object reference</returns>
+        /// http://stackoverflow.com/questions/2023210/cannot-access-protected-member-object-memberwiseclone
+        internal static T CloneObject<T>(this T obj) 
+        {
+            if (obj == null) return default(T);
+            System.Reflection.MethodInfo inst = obj.GetType().GetMethod("MemberwiseClone",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            if (inst != null)
+                return (T)inst.Invoke(obj, null);
+            else
+                return default(T);
         }
 
         internal static FilterDefinition<T> Combine<T>(ImmutableList<FilterDefinition<T>> filters)

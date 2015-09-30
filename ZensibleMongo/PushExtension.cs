@@ -1,5 +1,6 @@
 ﻿namespace ZensibleMongo
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -62,7 +63,8 @@
             this ICreateSingleRecipe<TDocument> recipe,
             CancellationToken token = default(CancellationToken))
         {
-            var value = recipe.Document.CloneJson();
+            
+            var value =  recipe.Document.CloneObject();
             await recipe.Collection.InsertOneAsync(value, token);
             return value;
         }
@@ -81,7 +83,7 @@
             InsertManyOptions options = null,
             CancellationToken token = default(CancellationToken))
         {
-            var inserts = createMultiRecipe.AllDocuments().Select(v => v.CloneJson()).ToArray();
+            var inserts = createMultiRecipe.AllDocuments().Select(v => v.CloneObject()).ToArray();
             await createMultiRecipe.Collection.InsertManyAsync(inserts, options, token);
             return inserts;
         }
