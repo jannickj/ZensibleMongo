@@ -1,6 +1,6 @@
 # Zensible Mongo
 
-Extension library to simplify working with mongo, it uses a monad-like approach to performing calls to the mongo db, this  allows for specific type of calls to be stored.
+Extension library to simplify working with mongo, it uses a builder pattern approach to performing calls to the mongo db, this  allows for specific type of calls to be stored.
 
 # Motivation
 We all had to perform simple mongo actions but because of the mindboogling poor api of the offical mongo driver instead gone insane.
